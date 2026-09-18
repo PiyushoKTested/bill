@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+/* Smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ───── Print styles ───── */
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the print area and its children */
+  .print-area, .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .print-area .bill-preview-container {
+    padding: 0 !important;
+    background: white !important;
+    min-height: auto !important;
+  }
+
+  .print-area .bill-document {
+    box-shadow: none !important;
+    width: 100% !important;
+    min-height: auto !important;
+  }
+
+  /* Thermal sizing for print */
+  .print-area .bill-document[data-paper="80mm"] {
+    width: 80mm !important;
+  }
+  .print-area .bill-document[data-paper="58mm"] {
+    width: 58mm !important;
+  }
+  .print-area .bill-document[data-paper="a4"] {
+    width: 210mm !important;
+  }
+
+  .print-area .bill-document[data-template="classic"] {
+    font-family: Georgia, serif !important;
+  }
+
+  /* Prevent page breaks inside items */
+  table, tr, td, th {
+    page-break-inside: avoid;
+  }
+}
